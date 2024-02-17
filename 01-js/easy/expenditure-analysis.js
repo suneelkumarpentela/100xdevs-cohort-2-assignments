@@ -14,7 +14,30 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+
+  let n = transactions.length;
+
+  let catObj = {};
+  let ans = [];
+
+  for( let i=0; i<n; i++ ){
+    let cat = transactions[i]["category"];
+    let price = transactions[i]["price"];
+
+    if( !catObj.hasOwnProperty(cat) ){
+
+      let catLen = ans.length;
+      catObj[cat] = catLen;
+      ans.push({ "category":cat, "totalSpent": price });
+    }
+    else{
+      console.log( ans );
+      ans[catObj[cat]]["totalSpent"] += price;
+    }
+  } 
+
+  return ans;
 }
+
 
 module.exports = calculateTotalSpentByCategory;
